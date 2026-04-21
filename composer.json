@@ -58,6 +58,7 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "artisan74": "C:\\php-7.4.6\\php.exe artisan"
     }
 }

@@ -18,18 +18,16 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', 'PrincipalController@principal'); //chamando o método do controller
-
 Route::get('/sobre-nos', 'SobreNosController@sobreNos');
-
 Route::get('/contato', 'ContatoController@contato');
 
 Route::get('/login', function() { return 'Login'; });
 
-Route::get('/clientes', function() { return 'Clientes'; });
-
-Route::get('/fornecedores', function() { return 'Fornecedores';});
-
-Route::get('/produtos', function() { return 'Produtos';});
+Route::prefix('/app')->group(function() {
+    Route::get('/clientes', function() { return 'Clientes'; });
+    Route::get('/fornecedores', function() { return 'Fornecedores';});
+    Route::get('/produtos', function() { return 'Produtos';});
+});
 
 // Route::get(
 //     '/contato/{nome}/{categoria_id}',

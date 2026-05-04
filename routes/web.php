@@ -23,6 +23,14 @@ Route::get('/sobre-nos', 'SobreNosController@sobreNos');
 
 Route::get('/contato', 'ContatoController@contato');
 
+Route::get('/login', function() { return 'Login'; });
+
+Route::get('/clientes', function() { return 'Clientes'; });
+
+Route::get('/fornecedores', function() { return 'Fornecedores';});
+
+Route::get('/produtos', function() { return 'Produtos';});
+
 // Route::get(
 //     '/contato/{nome}/{categoria_id}',
 //     function(string $nome, int $categoria_id = 1) {

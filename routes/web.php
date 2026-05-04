@@ -30,8 +30,9 @@ Route::prefix('/app')->group(function() {
 });
 
 Route::get('/rota1', function() { echo 'Rota 1'; })->name('site.rota1');
-// Route::get('/rota2', function() { echo 'Rota 2'; })->name('site.rota2');
-Route::redirect('/rota2', '/rota1'); //redireciona a rota 2 para a rota 1
+Route::get('/rota2', function() {
+    return redirect()->route('site.rota1');
+})->name('site.rota2');
 
 // Route::get(
 //     '/contato/{nome}/{categoria_id}',

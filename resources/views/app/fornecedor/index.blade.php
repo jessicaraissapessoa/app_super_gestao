@@ -5,23 +5,42 @@
 @php
     // Comentário com sintaxe php
 
-    //if() {} else if {} else {}
+    //if(isset($variável)) {} else if {} else {} //isset retorna true se a variável estiver definida
+    /* if(empty($variavel)) // empty verifica se uma string está vazia:
+    - ''
+    - 0
+    - 0.0
+    - '0'
+    - null
+    - false
+    - array()
+    - $var  */
 @endphp
 
 {{-- @dd($fornecedores) --}}
 
-@if(count($fornecedores) > 0 && count($fornecedores) < 10)
+{{-- @if(count($fornecedores) > 0 && count($fornecedores) < 10)
     <h3>Existem alguns fornecedores cadastrados</h3>
 @elseif(count($fornecedores) > 10)
     <h3>Existem muitos fornecedores cadastrados</h3>
 @else
     <h3>Não existem fornecedores cadastrados</h3>
-@endif
+@endif --}}
 
-Fornecedor: {{ $fornecedores[0]['nome'] }}
-<br>
-Status: {{  $fornecedores[0]['status'] }}
-<br>
+@isset($fornecedores) {{-- Acessa o bloco de código apenas se a variável estiver definida --}}
+    Fornecedor: {{ $fornecedores[2]['nome'] }}
+    <br>
+    Status: {{  $fornecedores[2]['status'] }}
+    <br>
+    @isset($fornecedores[2]['cnpj'])
+        CNPJ: {{ $fornecedores[2]['cnpj'] }}
+        @empty($fornecedores[2]['cnpj'])
+            Vazio
+        @endempty
+    @endisset
+@endisset
+
+{{-- <br>
 @if(!($fornecedores[0]['status'] == 'S'))
     Fornecedor inativo
 @endif
@@ -29,4 +48,4 @@ Status: {{  $fornecedores[0]['status'] }}
 <!-- Executa se a codição for falsa -->
 @unless($fornecedores[0]['status'] == 'S')
     Fornecedor inativo
-@endunless
+@endunless --}}

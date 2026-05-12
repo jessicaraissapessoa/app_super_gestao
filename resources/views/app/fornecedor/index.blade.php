@@ -28,13 +28,19 @@
 @endif --}}
 
 @isset($fornecedores) {{-- Acessa o bloco de código apenas se a variável estiver definida --}}
-    Fornecedor: {{ $fornecedores[2]['nome'] }}
-    <br>
-    Status: {{  $fornecedores[2]['status'] }}
-    <br>
-    CNPJ: {{ $fornecedores[2]['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
-    <br>
-    Telefone: ({{ $fornecedores[1]['ddd'] ?? ''}}) {{ $fornecedores[1]['telefone'] ?? '' }}
+    
+    @for ($i = 0; isset($fornecedores[$i]); $i++)
+        Fornecedor: {{ $fornecedores[$i]['nome'] }}
+        <br>
+        Status: {{  $fornecedores[$i]['status'] }}
+        <br>
+        CNPJ: {{ $fornecedores[$i]['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
+        <br>
+        Telefone: ({{ $fornecedores[$i]['ddd'] ?? ''}}) {{ $fornecedores[$i]['telefone'] ?? '' }}
+        <hr>
+    @endfor
+    
+    
     @switch($fornecedores[1]['ddd'])
         @case ('11')
             São Paulo - SP
@@ -59,6 +65,7 @@
 
 
 @endisset
+
 
 {{-- <br>
 @if(!($fornecedores[0]['status'] == 'S'))

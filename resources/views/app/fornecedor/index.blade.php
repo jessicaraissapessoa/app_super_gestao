@@ -39,6 +39,21 @@
         Telefone: ({{ $fornecedores[$i]['ddd'] ?? ''}}) {{ $fornecedores[$i]['telefone'] ?? '' }}
         <hr>
     @endfor
+
+    <br>
+
+    @php $i = 0 @endphp
+    @while (isset($fornecedores[$i]))
+        Fornecedor: {{ $fornecedores[$i]['nome'] }}
+        <br>
+        Status: {{  $fornecedores[$i]['status'] }}
+        <br>
+        CNPJ: {{ $fornecedores[$i]['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
+        <br>
+        Telefone: ({{ $fornecedores[$i]['ddd'] ?? ''}}) {{ $fornecedores[$i]['telefone'] ?? '' }}
+        <hr>
+        @php $i++ @endphp
+    @endwhile
     
     
     @switch($fornecedores[1]['ddd'])

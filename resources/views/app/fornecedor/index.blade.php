@@ -32,12 +32,18 @@
     <br>
     Status: {{  $fornecedores[2]['status'] }}
     <br>
-    @isset($fornecedores[2]['cnpj'])
+    CNPJ: {{ $fornecedores[2]['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
+
+
+
+    {{-- @isset($fornecedores[2]['cnpj'])
         CNPJ: {{ $fornecedores[2]['cnpj'] }}
         @empty($fornecedores[2]['cnpj'])
             Vazio
         @endempty
-    @endisset
+    @endisset --}}
+
+
 @endisset
 
 {{-- <br>

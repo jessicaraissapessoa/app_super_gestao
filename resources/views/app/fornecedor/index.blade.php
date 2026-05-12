@@ -33,7 +33,21 @@
     Status: {{  $fornecedores[2]['status'] }}
     <br>
     CNPJ: {{ $fornecedores[2]['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
-
+    <br>
+    Telefone: ({{ $fornecedores[1]['ddd'] ?? ''}}) {{ $fornecedores[1]['telefone'] ?? '' }}
+    @switch($fornecedores[1]['ddd'])
+        @case ('11')
+            São Paulo - SP
+            @break
+        @case ('32')
+            Juíz de Fora - MG
+            @break
+        @case ('85')
+            Fortaleza - CE
+            @break
+        @default
+            Estado não identificado
+    @endswitch
 
 
     {{-- @isset($fornecedores[2]['cnpj'])

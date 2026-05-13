@@ -29,7 +29,7 @@
 
 @isset($fornecedores) {{-- Acessa o bloco de código apenas se a variável estiver definida --}}
     
-    @for ($i = 0; isset($fornecedores[$i]); $i++)
+    {{-- @for ($i = 0; isset($fornecedores[$i]); $i++)
         Fornecedor: {{ $fornecedores[$i]['nome'] }}
         <br>
         Status: {{  $fornecedores[$i]['status'] }}
@@ -51,11 +51,27 @@
         <br>
         Telefone: ({{ $fornecedor['ddd'] ?? ''}}) {{ $fornecedores[$i]['telefone'] ?? '' }}
         <hr>
-    @endforeach
+    @endforeach --}}
+
+        <br>
+
+    <!-- Se o array percorrido estiver vazio, podemos desviar o fluxo para o que está no bloco empty -->
+    @forelse ($fornecedores as $indice => $fornecedor)
+        Fornecedor: {{ $fornecedor['nome'] }}
+        <br>
+        Status: {{  $fornecedor['status'] }}
+        <br>
+        CNPJ: {{ $fornecedor['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
+        <br>
+        Telefone: ({{ $fornecedor['ddd'] ?? ''}}) {{ $fornecedor['telefone'] ?? '' }}
+        <hr>
+        @empty
+            Não existem fornecedores cadastrados
+    @endforelse
 
     <br>
 
-    @php $i = 0 @endphp
+    {{-- @php $i = 0 @endphp
     @while (isset($fornecedores[$i]))
         Fornecedor: {{ $fornecedores[$i]['nome'] }}
         <br>
@@ -81,7 +97,7 @@
             @break
         @default
             Estado não identificado
-    @endswitch
+    @endswitch --}}
 
 
     {{-- @isset($fornecedores[2]['cnpj'])

@@ -64,6 +64,9 @@
         CNPJ: {{ $fornecedor['cnpj'] ?? '' }} <!-- valor default só é aplicado para variável não definida ou null -->
         <br>
         Telefone: ({{ $fornecedor['ddd'] ?? ''}}) {{ $fornecedor['telefone'] ?? '' }}
+        <br>
+        <!-- fazendo com que o bloco de instrução não seja interpretado usando @-->
+        Telefone: (@{{ $fornecedor['ddd'] ?? ''}}) @{{ $fornecedor['telefone'] ?? '' }}
         <hr>
         @empty
             Não existem fornecedores cadastrados

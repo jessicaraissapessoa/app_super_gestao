@@ -57,6 +57,10 @@
 
     <!-- Se o array percorrido estiver vazio, podemos desviar o fluxo para o que está no bloco empty -->
     @forelse ($fornecedores as $indice => $fornecedor)
+        Iteração atual: {{ $loop->iteration }}
+        <br>
+        Total de registros: {{ $loop->count }}
+        <br>
         Fornecedor: {{ $fornecedor['nome'] }}
         <br>
         Status: {{  $fornecedor['status'] }}
@@ -67,6 +71,14 @@
         <br>
         <!-- fazendo com que o bloco de instrução não seja interpretado usando @-->
         Telefone: (@{{ $fornecedor['ddd'] ?? ''}}) @{{ $fornecedor['telefone'] ?? '' }}
+        <br>
+        @if($loop->first)
+            Primeira Iteração
+        @endif
+        <br>
+        @if($loop->last)
+            Última Iteração
+        @endif
         <hr>
         @empty
             Não existem fornecedores cadastrados
